@@ -86,6 +86,10 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+      with:
+       args: >
+        -Dsonar.java.coveragePlugin=jacoco
+        -Dsonar.coverage.jacoco.xmlReportPaths=http://13.232.73.31:9000/jacoco/jacoco.xml
         
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
