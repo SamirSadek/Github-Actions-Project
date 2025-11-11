@@ -79,44 +79,35 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-    <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
+	<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.7</version>
+    <executions>
+        <!-- Prepare agent for test coverage -->
+        <execution>
+            <id>prepare-agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
 
-        <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>${jacoco.version}</version>
-            <executions>
-                <!-- Prepare the agent before running tests -->
-                <execution>
-                    <id>prepare-agent</id>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                </execution>
-
-                <!-- Generate XML report for SonarQube -->
-                <execution>
-                    <id>report</id>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                    <configuration>
-                        <outputDirectory>${project.build.directory}/jacoco</outputDirectory>
-                        <formats>
-                            <format>xml</format>
-                        </formats>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
+        <!-- Generate XML report -->
+        <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.build.directory}/jacoco</outputDirectory>
+                <xml>true</xml>          <!-- Enable XML report -->
+                <csv>false</csv>
+                <html>true</html>        <!-- Optional HTML report -->
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 
 
 		 <distributionManagement>
