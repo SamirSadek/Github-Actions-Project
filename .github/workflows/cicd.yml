@@ -98,6 +98,11 @@ jobs:
       with:
         name: app-jar
         path: target/*.jar 
+    - name: Download coverage report
+      uses: actions/download-artifact@v4
+      with:
+        name: coverage-report
+        path: target/site/jacoco
         
     - uses: actions/checkout@v4
       with:
@@ -111,7 +116,7 @@ jobs:
       with:
        args: >
         -Dsonar.java.coveragePlugin=jacoco
-        -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco/jacoco.xml
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
         
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
