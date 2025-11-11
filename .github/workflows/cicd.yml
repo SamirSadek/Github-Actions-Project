@@ -55,6 +55,8 @@ jobs:
         cache: maven
     - name: Unit Test Cases
       run: mvn test
+    - name: Run Unit Tests with Coverage
+      run: mvn clean test jacoco:report
 
   build_project_and_sonar_scan:
     runs-on: self-hosted
