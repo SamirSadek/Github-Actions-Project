@@ -89,7 +89,7 @@ jobs:
       with:
        args: >
         -Dsonar.java.coveragePlugin=jacoco
-        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco/jacoco.xml
         
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
